@@ -1,0 +1,13 @@
+# Django specific
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+media/
+
+# Python Virtual Environment
+venv/
+env/
+.env
+.DS_Store
