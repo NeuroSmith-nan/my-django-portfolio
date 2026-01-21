@@ -15,9 +15,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include       
+from django.urls import path, include  
+from django.http import HttpResponse     
+from django.conf import settings             
+from django.conf.urls.static import static
+
+def home(request):
+    return HttpResponse("Hello! The Backend Server is running correctly.")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("myApp.urls")),
+    path("", home),
 ]
+
+# เพิ่มท่อนนี้ต่อท้าย เพื่อให้โหลดรูปได้ในโหมด DEBUG
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
